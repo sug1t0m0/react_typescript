@@ -2,7 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 
 import { TestText } from "./presentations/atoms/testText";
-import { CircleImage } from "./presentations/atoms/circleImage";
+import NestedGrid from "./presentations/molecules/articleCard";
 
 import "./styles.css";
 
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <h1>Hello CodeSandbox</h1>
       <TestText>ああああ</TestText>
-      <CircleImage imageUrl={"http://placehold.jp/125x125.png"} />
+      <NestedGrid />
     </div>
   );
 }
