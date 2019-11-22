@@ -1,32 +1,38 @@
 import styled from "styled-components";
 
+interface OuterProps {
+  fontSize?: number;
+  backgroundColor?: string;
+  color?: string;
+}
+
 export const Outer = styled.div`
-  background-color: #f0f0f0;
-  color: #000000;
+  background-color: ${(props:OuterProps) => props.backgroundColor || "#ffffff"};
+  color: ${(props:OuterProps) => props.color || "#000000"};
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
-  line-height: 30px;
+  width:${(props:OuterProps) => (props.fontSize || 24) + "px"};
+  height: ${(props:OuterProps) => (props.fontSize || 24) + "px"};
+  font-size: ${(props:OuterProps) => (props.fontSize || 24) + "px"};
+  line-height: ${(props:OuterProps) => (props.fontSize || 24) + "px"};
   position: relative;
 `;
 
-export const Test = styled.div`
+export const HillBottom = styled.div`
   position: absolute;
-  background-color: #000000;
+  background-color: ${(props:OuterProps) => props.color || "#000000"};
   width: 100%;
-  height: 15px;
+  height: ${(props:OuterProps) => (props.fontSize || 24) / 2 + "px"};
   z-index: 1;
   left: 0px;
   bottom: 0px;
   border-radius: 50% / 60% 60% 0 0;
 `;
 
-export const Test2 = styled.div`
+export const HillTop = styled.div`
   position: absolute;
-  background-color: #f0f0f0;
+  background-color: ${(props:OuterProps) => props.backgroundColor || "#ffffff"};
   width: 100%;
-  height: 12px;
+  height: ${(props:OuterProps) => (props.fontSize || 24) *0.4 + "px"};;
   z-index: 1;
   left: 0px;
   bottom: 0px;
