@@ -22,11 +22,26 @@ const useStyles = makeStyles(theme => ({
 export default function NestedGrid() {
   const classes = useStyles({});
 
+  function FormRow2() {
+    return (
+      <React.Fragment>
+        <Grid item xs={4}>
+          <MorningIcon fontSize={30} />
+        </Grid>
+        <Grid item xs={4}>
+          <MorningIcon fontSize={12} />
+        </Grid>
+        <Grid item xs={4}>
+          <MorningIcon fontSize={40} />
+        </Grid>
+      </React.Fragment>
+    );
+  }
+
   function FormRow() {
     return (
       <React.Fragment>
         <Grid item xs={4}>
-          <MorningIcon />
           <CircleImage imageUrl={"http://placehold.jp/125x125.png"} />
         </Grid>
         <Grid item xs={4}>
@@ -43,6 +58,7 @@ export default function NestedGrid() {
     <Outer>
       <Card className={classes.card}>
         <Grid container item xs={12}>
+          <FormRow2 />
           <FormRow />
         </Grid>
       </Card>
