@@ -2,7 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 
 import { TestText } from "./presentations/atoms/testText";
-import NestedGrid from "./presentations/molecules/articleCard";
+import { MeasuredComp } from "./presentations/molecules/articleCard";
 
 import "./styles.css";
 
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <h1>Hello CodeSandbox</h1>
       <TestText>ああああ</TestText>
-      <NestedGrid />
+      <MeasuredComp />
     </div>
   );
 }
