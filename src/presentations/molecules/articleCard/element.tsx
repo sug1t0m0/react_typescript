@@ -16,6 +16,7 @@ export const Outer = styled.div`
 `;
 
 export const IconOuter = styled.div`
+  margin-top: 10px;
   padding: 5px 0 0 0;
 `;
 
