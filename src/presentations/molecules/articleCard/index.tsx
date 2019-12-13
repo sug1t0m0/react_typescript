@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   card: (props: Props) => {
     const radius = props.size.height / 2;
     return {
-      background: "#f0f0f0",
+      background: props.color,
       borderRadius: `${radius}px / ${radius}px`,
       width: "100%"
     };
@@ -41,6 +41,7 @@ interface Props {
     width: number;
     height: number;
   };
+  color: string;
 }
 
 const NestedGrid = (props: Props) => {
@@ -53,8 +54,8 @@ const NestedGrid = (props: Props) => {
           <IconOuter>
             <MorningIcon
               {...{
-                fontSize: 30,
-                backgroundColor: "#f0f0f0",
+                fontSize: 20,
+                backgroundColor: props.color,
                 color: "#000000"
               }}
             />
@@ -64,8 +65,8 @@ const NestedGrid = (props: Props) => {
           <IconOuter>
             <NoonIcon
               {...{
-                fontSize: 30,
-                backgroundColor: "#f0f0f0",
+                fontSize: 20,
+                backgroundColor: props.color,
                 color: "#000000"
               }}
             />
@@ -76,8 +77,8 @@ const NestedGrid = (props: Props) => {
           <IconOuter>
             <NightIcon
               {...{
-                fontSize: 30,
-                backgroundColor: "#f0f0f0",
+                fontSize: 20,
+                backgroundColor: props.color,
                 color: "#000000"
               }}
             />
@@ -113,7 +114,9 @@ const NestedGrid = (props: Props) => {
   );
 };
 
-interface TestComponentProps {}
+interface TestComponentProps {
+  color: string;
+}
 
 interface TestComponentState {
   size: {
@@ -162,7 +165,7 @@ export class MeasuredComp extends React.Component<
         >
           {({ measureRef }) => (
             <MeasureOuter ref={measureRef}>
-              <NestedGrid {...this.state} />
+              <NestedGrid {...{ ...this.state, ...this.props }} />
             </MeasureOuter>
           )}
         </Measure>
