@@ -10,7 +10,8 @@ import {
   IconOuter,
   BadgeAdjuster,
   BadgeAdjusterInner,
-  MeasureOuter
+  MeasureOuter,
+  BackgroundLine
 } from "./element";
 import { CircleImage } from "../../atoms/circleImage";
 import { MorningIcon } from "../../atoms/moningIcon";
@@ -139,6 +140,7 @@ export class MeasuredComp extends React.Component<
   render() {
     return (
       <Outer>
+        <BackgroundLine />
         <BadgeAdjuster size={this.state.size}>
           <Badge
             badgeContent={"NEW"}
