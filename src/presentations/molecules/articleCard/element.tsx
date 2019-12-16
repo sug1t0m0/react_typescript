@@ -13,6 +13,17 @@ export const Outer = styled.div`
   position: relative;
   display: inline-block;
   width: 90%;
+  padding: 20px 0;
+`;
+
+export const BackgroundLine = styled.div`
+  position: absolute;
+  top: 0;
+  left: 40%;
+  height: 100%;
+  width: 20%;
+  background-color: #cccccc;
+  z-index: -1;
 `;
 
 export const IconOuter = styled.div`
@@ -26,7 +37,7 @@ export const BadgeAdjuster = styled.div`
   width: ${(props: BadgeAdjusterProps) =>
     props.size.width - (props.size.height / 4) * 1 + "px"};
   height: ${(props: BadgeAdjusterProps) => props.size.height + "px"};
-  top: 0;
+  top: 20;
   left: 0;
 `;
 
@@ -38,6 +49,4 @@ export const BadgeAdjusterInner = styled.div`
   height: ${(props: BadgeAdjusterProps) => props.size.height + "px"};
 `;
 
-export const MeasureOuter = styled.div`
-  display: inline-block;
-`;
+export const MeasureOuter = styled.div``;
