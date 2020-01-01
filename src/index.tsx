@@ -1,9 +1,6 @@
 import * as React from "react";
 import { render } from "react-dom";
 
-import { TestText } from "./presentations/atoms/testText";
-import { MeasuredComp } from "./presentations/molecules/articleCard";
-
 import { DailyArticleCard } from "./presentations/molecules/dailyArticleCards";
 
 import "./styles.css";
@@ -20,8 +17,6 @@ class App extends React.Component<{}, {}> {
     return (
       <div className="App">
         <h1>Hello CodeSandbox</h1>
-        <TestText>ああああ</TestText>
-        <MeasuredComp color={"#ffcccc"} />
         <DailyArticleCard />
       </div>
     );

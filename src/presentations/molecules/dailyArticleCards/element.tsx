@@ -6,13 +6,13 @@ export const Outer = styled.div`
 `;
 
 export const Left = styled.div`
-  height: 30px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 0 0 auto;
-  background-color: #ffcccc;
 `;
 
 export const Right = styled.div`
-  height: 30px;
   flex: 1 0 auto;
-  background-color: #ccffcc;
 `;
