@@ -1,5 +1,6 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Badge from "@material-ui/core/Badge";
@@ -18,22 +19,20 @@ import { MorningIcon } from "../../atoms/moningIcon";
 import { NoonIcon } from "../../atoms/noonIcon";
 import { NightIcon } from "../../atoms/nightIcon";
 
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(2)
-  },
+const { useState } = React;
+
+const useStyles = makeStyles((theme: Theme) => ({
   card: (props: Props) => {
     const radius = props.size.height / 2;
     return {
-      background: props.color,
+      background: theme.palette.primary.light,
       borderRadius: `${radius}px / ${radius}px`,
       width: "100%"
     };
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary
+  icon: {
+    marginTop: "10px",
+    padding: "5px 0 0 0"
   }
 }));
 
@@ -42,7 +41,6 @@ interface Props {
     width: number;
     height: number;
   };
-  color: string;
 }
 
 const NestedGrid = (props: Props) => {
@@ -50,48 +48,23 @@ const NestedGrid = (props: Props) => {
 
   const IconsRow = () => {
     return (
-      <React.Fragment>
-        <Grid item xs={4}>
-          <IconOuter>
-            <MorningIcon
-              {...{
-                fontSize: 20,
-                backgroundColor: props.color,
-                color: "#000000"
-              }}
-            />
-          </IconOuter>
+      <>
+        <Grid item xs={4} className={classes.icon}>
+          <MorningIcon />
         </Grid>
-        <Grid item xs={4}>
-          <IconOuter>
-            <NoonIcon
-              {...{
-                fontSize: 20,
-                backgroundColor: props.color,
-                color: "#000000"
-              }}
-            />
-          </IconOuter>
+        <Grid item xs={4} className={classes.icon}>
+          <NoonIcon />
         </Grid>
-
-        <Grid item xs={4}>
-          <IconOuter>
-            <NightIcon
-              {...{
-                fontSize: 20,
-                backgroundColor: props.color,
-                color: "#000000"
-              }}
-            />
-          </IconOuter>
+        <Grid item xs={4} className={classes.icon}>
+          <NightIcon />
         </Grid>
-      </React.Fragment>
+      </>
     );
   };
 
   const CircleImagesRow = () => {
     return (
-      <React.Fragment>
+      <>
         <Grid item xs={4}>
           <CircleImage imageUrl={"http://placehold.jp/125x125.png"} />
         </Grid>
@@ -101,7 +74,7 @@ const NestedGrid = (props: Props) => {
         <Grid item xs={4}>
           <CircleImage imageUrl={"http://placehold.jp/125x125.png"} />
         </Grid>
-      </React.Fragment>
+      </>
     );
   };
 
@@ -115,63 +88,44 @@ const NestedGrid = (props: Props) => {
   );
 };
 
-interface TestComponentProps {
-  color: string;
-}
+export const ArticleCard: React.FC = () => {
+  const [size, setSize] = useState({
+    width: 0,
+    height: 0
+  });
 
-interface TestComponentState {
-  size: {
-    width: number;
-    height: number;
-  };
-}
-
-export class MeasuredComp extends React.Component<
-  TestComponentProps,
-  TestComponentState
-> {
-  state = {
-    size: {
-      width: 0,
-      height: 0
-    }
-  };
-
-  render() {
-    return (
-      <Outer>
-        <BackgroundLine />
-        <BadgeAdjuster size={this.state.size}>
-          <Badge
-            badgeContent={"NEW"}
-            anchorOrigin={{
-              horizontal: "right",
-              vertical: "top"
-            }}
-            color="secondary"
-          >
-            <BadgeAdjusterInner size={this.state.size} />
-          </Badge>
-        </BadgeAdjuster>
-        <Measure
-          bounds
-          onResize={contentRect => {
-            console.log({ ...contentRect.bounds });
-            const { width, height } = contentRect.bounds;
-            const size = {
-              width,
-              height
-            };
-            this.setState({ size });
+  return (
+    <Outer>
+      <BackgroundLine />
+      <BadgeAdjuster size={size}>
+        <Badge
+          badgeContent={"NEW"}
+          anchorOrigin={{
+            horizontal: "right",
+            vertical: "top"
           }}
+          color="secondary"
         >
-          {({ measureRef }) => (
-            <MeasureOuter ref={measureRef}>
-              <NestedGrid {...{ ...this.state, ...this.props }} />
-            </MeasureOuter>
-          )}
-        </Measure>
-      </Outer>
-    );
-  }
-}
+          <BadgeAdjusterInner size={size} />
+        </Badge>
+      </BadgeAdjuster>
+      <Measure
+        bounds
+        onResize={contentRect => {
+          const { width, height } = contentRect.bounds;
+          const size = {
+            width,
+            height
+          };
+          setSize({ ...size });
+        }}
+      >
+        {({ measureRef }) => (
+          <MeasureOuter ref={measureRef}>
+            <NestedGrid {...{ size }} />
+          </MeasureOuter>
+        )}
+      </Measure>
+    </Outer>
+  );
+};

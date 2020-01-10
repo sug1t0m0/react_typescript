@@ -8,7 +8,6 @@ interface BadgeAdjusterProps {
 }
 
 export const Outer = styled.div`
-  display: flex;
   justify-content: center;
   position: relative;
   display: inline-block;

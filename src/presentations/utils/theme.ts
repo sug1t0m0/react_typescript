@@ -40,7 +40,7 @@ export const defaultTheme = createMuiTheme({
   },
   typography: {
     // fontFamily: "Indie Flower",
-    fontSize: 12,
+    fontSize: 16,
     button: {
       textTransform: "none"
     }
