@@ -6,9 +6,6 @@ import { getWeekdayTheme } from "../../../logics/weekdayTheme";
 import { DateTime } from "luxon";
 import * as JapaneseHolidays from "japanese-holidays";
 
-import { Outer, Left, Right } from "./element";
-
-import { DateString } from "../../atoms/dateString";
 import { ArticleCard } from "../../molecules/articleCard";
 import { defaultTheme } from "../../utils/theme";
 
@@ -28,16 +25,9 @@ export const DailyArticleCard = () => {
           const theme = getWeekdayTheme(defaultTheme, dateTime, isHoliday);
 
           return (
-            <Outer>
-              <Left>
-                <DateString {...{ isHoliday, dateTime }} />
-              </Left>
-              <Right>
-                <MuiThemeProvider theme={theme}>
-                  <ArticleCard />
-                </MuiThemeProvider>
-              </Right>
-            </Outer>
+            <MuiThemeProvider theme={theme} key={index}>
+              <ArticleCard {...{ dateTime, isHoliday }} />
+            </MuiThemeProvider>
           );
         })}
     </>

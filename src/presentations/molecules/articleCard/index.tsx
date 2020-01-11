@@ -5,10 +5,10 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Badge from "@material-ui/core/Badge";
 import Measure from "react-measure";
+import { DateTime } from "luxon";
 
 import {
   Outer,
-  IconOuter,
   BadgeAdjuster,
   BadgeAdjusterInner,
   MeasureOuter,
@@ -18,6 +18,7 @@ import { CircleImage } from "../../atoms/circleImage";
 import { MorningIcon } from "../../atoms/moningIcon";
 import { NoonIcon } from "../../atoms/noonIcon";
 import { NightIcon } from "../../atoms/nightIcon";
+import { DateString } from "../../atoms/dateString";
 
 const { useState } = React;
 
@@ -27,12 +28,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     return {
       background: theme.palette.primary.light,
       borderRadius: `${radius}px / ${radius}px`,
-      width: "100%"
+      width: "100%",
+      padding: "5px 0"
     };
   },
   icon: {
-    marginTop: "10px",
-    padding: "5px 0 0 0"
+    marginTop: "10px"
+  },
+  dateString: {
+    display: "flex",
+    justifyContent: "center"
   }
 }));
 
@@ -41,6 +46,8 @@ interface Props {
     width: number;
     height: number;
   };
+  dateTime: DateTime;
+  isHoliday: boolean;
 }
 
 const NestedGrid = (props: Props) => {
@@ -81,6 +88,9 @@ const NestedGrid = (props: Props) => {
   return (
     <Card className={classes.card}>
       <Grid container item xs={12}>
+        <Grid item xs={12} className={classes.dateString}>
+          <DateString {...props} />
+        </Grid>
         <IconsRow />
         <CircleImagesRow />
       </Grid>
@@ -88,7 +98,12 @@ const NestedGrid = (props: Props) => {
   );
 };
 
-export const ArticleCard: React.FC = () => {
+interface ArticleCardProps {
+  dateTime: DateTime;
+  isHoliday: boolean;
+}
+
+export const ArticleCard: React.FC<ArticleCardProps> = props => {
   const [size, setSize] = useState({
     width: 0,
     height: 0
@@ -122,7 +137,7 @@ export const ArticleCard: React.FC = () => {
       >
         {({ measureRef }) => (
           <MeasureOuter ref={measureRef}>
-            <NestedGrid {...{ size }} />
+            <NestedGrid {...{ ...props, size }} />
           </MeasureOuter>
         )}
       </Measure>

@@ -1,7 +1,14 @@
 import * as React from "react";
 
 import { DateTime } from "luxon";
-import { DateStringOuter } from "./element";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  dateString: {
+    display: "flex",
+    color: theme.palette.primary.contrastText
+  }
+}));
 
 interface DateStringProps {
   dateTime: DateTime;
@@ -9,16 +16,15 @@ interface DateStringProps {
 }
 
 export const DateString = (props: DateStringProps) => {
+  const classes = useStyles({});
   const { dateTime } = props;
   const jaDateString = dateTime
     .setLocale("ja")
     .toLocaleString(DateTime.DATETIME_HUGE);
   const result = jaDateString.match(/\D(?=曜日)/);
   return (
-    <>
-      <DateStringOuter {...props}>{`${dateTime.month}/${
-        dateTime.day
-      }\n(${result})`}</DateStringOuter>
-    </>
+    <span className={classes.dateString}>{`${dateTime.month}/${
+      dateTime.day
+    }(${result})`}</span>
   );
 };
