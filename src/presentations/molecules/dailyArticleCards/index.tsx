@@ -8,6 +8,8 @@ import * as JapaneseHolidays from "japanese-holidays";
 
 import { ArticleCard } from "../../molecules/articleCard";
 import { defaultTheme } from "../../utils/theme";
+import { Outer, Left, Right } from "./element";
+import SampleChart from "../dounutChartTest";
 
 export const DailyArticleCard = () => {
   return (
@@ -26,7 +28,18 @@ export const DailyArticleCard = () => {
 
           return (
             <MuiThemeProvider theme={theme} key={index}>
-              <ArticleCard {...{ dateTime, isHoliday }} />
+              <Outer>
+                <Right>
+                  <ArticleCard {...{ dateTime, isHoliday }} />
+                </Right>
+                <Left>
+                  <SampleChart
+                    {...{
+                      onedaySpendingData: { expense: 500, usageLimit: 1000 }
+                    }}
+                  />
+                </Left>
+              </Outer>
             </MuiThemeProvider>
           );
         })}

@@ -5,7 +5,6 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   dateString: {
-    display: "flex",
     color: theme.palette.primary.contrastText
   }
 }));
