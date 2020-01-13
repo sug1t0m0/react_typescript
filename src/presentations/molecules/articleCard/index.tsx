@@ -87,10 +87,10 @@ const NestedGrid = (props: Props) => {
 
   return (
     <Card className={classes.card}>
+      <Grid item xs={12} className={classes.dateString}>
+        <DateString {...props} />
+      </Grid>
       <Grid container item xs={12}>
-        <Grid item xs={12} className={classes.dateString}>
-          <DateString {...props} />
-        </Grid>
         <IconsRow />
         <CircleImagesRow />
       </Grid>
