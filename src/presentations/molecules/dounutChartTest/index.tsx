@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { PieChart, Pie, Sector, Cell } from "recharts";
 
 const COLORS = ["#00C49F", "#CCC", "#FF0000", "#FF8042"];
@@ -17,7 +17,6 @@ const renderActiveShape = props => {
     payload,
     value
   } = props;
-  console.log(props);
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
   const sx = cx + (outerRadius + 4) * cos;
@@ -80,7 +79,7 @@ interface Props {
     usageLimit: number;
   };
 }
-export default class Example extends PureComponent<Props, {}> {
+export default class Example extends React.PureComponent<Props, {}> {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/hqnrgxpj/";
 
   state = {
