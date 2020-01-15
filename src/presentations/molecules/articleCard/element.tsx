@@ -15,13 +15,38 @@ export const Outer = styled.div`
   padding: 20px 0;
 `;
 
-export const BackgroundLine = styled.div`
+export const BackgroundLineMiddle = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 40%;
+  height: calc(100% - 20px);
+  width: 20%;
+  background-color: #cccccc;
+  z-index: -1;
+`;
+
+export const BackgroundLineTop = styled.div`
   position: absolute;
   top: 0;
   left: 40%;
-  height: 100%;
-  width: 20%;
-  background-color: #cccccc;
+  border-right: ${(props: BadgeAdjusterProps) =>
+    (props.size.width * 0.2) / 2 + "px solid #cccccc"};
+  border-bottom: 0px solid #cccccc;
+  border-left: ${(props: BadgeAdjusterProps) =>
+    (props.size.width * 0.2) / 2 + "px solid #cccccc"};
+  border-top: 15px solid transparent;
+  z-index: -1;
+`;
+
+export const BackgroundLineEnd = styled.div`
+  position: absolute;
+  top: ${(props: BadgeAdjusterProps) => props.size.height + 40 - 5 + "px"};
+  left: 40%;
+  border-right: ${(props: BadgeAdjusterProps) =>
+    (props.size.width * 0.2) / 2 + "px solid transparent"};
+  border-top: 15px solid #cccccc;
+  border-left: ${(props: BadgeAdjusterProps) =>
+    (props.size.width * 0.2) / 2 + "px solid transparent"};
   z-index: -1;
 `;
 
@@ -46,6 +71,7 @@ export const BadgeAdjusterInner = styled.div`
   width: ${(props: BadgeAdjusterProps) =>
     props.size.width - (props.size.height / 4) * 1 + "px"};
   height: ${(props: BadgeAdjusterProps) => props.size.height + "px"};
+  display: transparent;
 `;
 
 export const MeasureOuter = styled.div``;

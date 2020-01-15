@@ -12,7 +12,9 @@ import {
   BadgeAdjuster,
   BadgeAdjusterInner,
   MeasureOuter,
-  BackgroundLine
+  BackgroundLineMiddle,
+  BackgroundLineTop,
+  BackgroundLineEnd
 } from "./element";
 import { CircleImage } from "../../atoms/circleImage";
 import { MorningIcon } from "../../atoms/moningIcon";
@@ -98,6 +100,16 @@ const NestedGrid = (props: Props) => {
   );
 };
 
+const BackgroundLine: React.FC<Props> = props => {
+  return (
+    <>
+      <BackgroundLineTop {...props} />
+      <BackgroundLineMiddle {...props} />
+      <BackgroundLineEnd {...props} />
+    </>
+  );
+};
+
 interface ArticleCardProps {
   dateTime: DateTime;
   isHoliday: boolean;
@@ -111,10 +123,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = props => {
 
   return (
     <Outer>
-      <BackgroundLine />
+      <BackgroundLine {...{ ...props, size }} />
       <BadgeAdjuster size={size}>
         <Badge
-          badgeContent={"NEW"}
+          badgeContent={"Has Post !"}
           anchorOrigin={{
             horizontal: "right",
             vertical: "top"

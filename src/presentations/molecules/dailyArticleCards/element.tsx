@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Outer = styled.div`
   display: flex;
   width: 100%;
+  max-width: 760px;
 `;
 
 export const Left = styled.div`
